@@ -1,6 +1,9 @@
 <?php
-
+namespace App\Exceptions;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Route;
+use Exception;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
+    return view('dashboard/maps');
+});
+
+Route::get('/login', function () {
     return view('auth/login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard/dashboard');
 });
-Route::get('/map', function () {
-    return view('dashboard/maps');
+
+Route::get('/profile', function (profile $profile) {
+    return view('auth/profile', [
+        'logged_in'  => 'true',
+        'heading' => 'My Profile',
+        'profile' => Profile::find(9)
+    ]);
 });
