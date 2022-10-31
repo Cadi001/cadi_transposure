@@ -2,10 +2,10 @@
     --primary-color:    rgb(0, 0, 0);
     --secondary-color:  rgb(163, 255, 168);
     --tertiary-color:   rgb(255, 255, 255);
-    --theme1-color:     rgb(58, 58, 58);
+    --theme1-color:     rgb(27, 27, 27);
     --theme2-color:     rgb(255, 139, 61);
     --shadow-color:     rgb(129, 151, 126);
-    --inactive-color:   rgb(255, 182, 113);
+    --inactive-color:   #5fcfff;
     --transparent:      rgba(255, 255, 255, 0);
 }
 
@@ -30,6 +30,8 @@ h6{
 }
 #getDirection{
     padding-top: 10px;
+    width: 100%;
+    align-self: left;
 }
 .sideNavButton{
     padding: 20px;
@@ -88,7 +90,7 @@ h6{
     height: 50px;
 }
 .icon-color{
-    color: var(--primary-color);
+    color: var(--tertiary-color);
 }
 .checked {
     color: orange;

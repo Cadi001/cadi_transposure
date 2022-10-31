@@ -9,9 +9,27 @@
         var p1 = "adTrigged";
         console.log("Triggered");
     }
+    function showGetDirectionForm(){
+        var getDirectionFrom = document.getElementById("from");
+        var getDirectionTo = document.getElementById("to");
+        var DirectionBtn = document.getElementById("directionBtn");
+        var sideNav = document.getElementById("sidenav");
+        if(getDirectionFrom.style.display =="none"){
+            getDirectionFrom.style.display = "block";
+            getDirectionTo.style.display = "block";
+            DirectionBtn.style.display = "block";
+            sideNav.style.display = "none";
+        }else{
+            getDirectionFrom.style.display = "none";
+            getDirectionTo.style.display = "none";
+            DirectionBtn.style.display = "none";
+            sideNav.style.display = "none";
+        }
+    }
     function myFunction() {
         var x = document.getElementById("sidenav");
         var y = document.getElementById("toggleNavbar");
+
         if (x.style.display == "none") {
         x.style.display = "block";
         x.style.textAlign ="center";
@@ -581,10 +599,10 @@
         var input2 = document.getElementById("to");
         //var autocomplete2 = new google.maps.places.Autocomplete(input2, options)
         const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
-        
+    
 
         function addMarker(props){
-
+            
             // The marker, positioned at SAPALIBUTAD
             var marker = new google.maps.Marker({
                 position    : props.coords,
@@ -612,8 +630,14 @@
                     infoWindow.open(map, marker);
                     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
                 });
+                marker.addListener('dblclick', function(){
+                    marker.setMap(null);
+                    //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
+                });
             }
         }
     }
-
+var getDirectionFrom = document.getElementById("from").style.display = "none";
+var getDirectionTo = document.getElementById("to").style.display = "none";
+var DirectionBtn = document.getElementById("directionBtn").style.display = "none";
 </script>

@@ -89,6 +89,7 @@
             <h6>TRANSPOSURE</h6>
             <br><br>
             <div>
+                
                 <?php
                     if(true){
                         echo '<a class="sideNavButton" href="profile"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
@@ -99,6 +100,8 @@
                     
                 ?>
                 <br><br><br><br>
+                <a onclick="showGetDirectionForm()" class="sideNavButton" id="searchDirection" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Search Directions &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                <br><br><br><br>
                 <a class="sideNavButton" href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
                 <br><br><br><br>
                 <a onclick="myFunction()" class="sideNavButton" id="jeep" href="#"><i class="fa-solid fa-motorcycle"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Jeep &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
@@ -106,6 +109,7 @@
                 <a onclick="myFunction()" class="sideNavButton" id="bus" href="#"><i class="fa-solid fa-bus-simple"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Bus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 <br><br><br><br>
                 <a onclick="myFunction()" class="sideNavButton" id="tricycle" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tricycle &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                
            
             </div>
         </div>
@@ -119,5 +123,6 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkgdeYfgqc0CrCToppJtf5FP4LXSQcgRY&libraries=places&callback=initMap">
     </script>
     <script src="https://kit.fontawesome.com/52721c09fd.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     
 </html>
