@@ -91,10 +91,10 @@
             <div>
                 <?php
                     if(true){
-                        echo '<a class="sideNavButton" href="profile.php"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
+                        echo '<a class="sideNavButton" href="profile"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
                     }
                     else{
-                        echo '<a class="sideNavButton" href="profile.php"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Login &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
+                        echo '<a class="sideNavButton" href="profile"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Login &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
                     }
                     
                 ?>
