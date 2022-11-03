@@ -28,7 +28,7 @@
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Profile Settings</h4>
+                            <h4 class="text-right">Account Details</h4>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12"><label class="labels">Fullname</label><input type="text" class="form-control" placeholder="Fullname" value="{{ $profile['fullname']}}" disabled></div>
@@ -36,11 +36,17 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value="{{ $profile['contact_no']}}" disabled></div>
+                        </div>
+                        <div class="row mt-3"> 
                             <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address line 1" value="{{ $profile['street'] .', '.$profile['barangay'].', '.$profile['city']. '.'}}" disabled></div>
+                        </div>
+                        <div class="row mt-3">
                             <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="{{$profile['email']}}" disabled></div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value="Philippines" disabled></div>
+                        </div>
+                        <div class="row mt-3">  
                             <div class="col-md-6"><label class="labels">City/ Province</label><input type="text" class="form-control" value="Angeles City" placeholder="state" disabled></div>
                         </div>
                         <br>

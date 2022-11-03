@@ -35,6 +35,6 @@ Route::get('/profile', function (profile $profile) {
     return view('auth/profile', [
         'logged_in'  => 'true',
         'heading' => 'My Profile',
-        'profile' => Profile::find(9)
+        'profile' => Profile::find(11)
     ]);
 });
