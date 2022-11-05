@@ -31,10 +31,23 @@ Route::get('/dashboard', function () {
     return view('dashboard/dashboard');
 });
 
-Route::get('/profile', function (profile $profile) {
-    return view('auth/profile', [
-        'logged_in'  => 'true',
-        'heading' => 'My Profile',
-        'profile' => Profile::find(11)
+//SINGLE PROFILE
+Route::get('/profile/{id}', function($id){
+    return view('auth/profile',[
+        'logged_in' => 'true',
+        'heading' => 'Profile',
+        'profile' => Profile::find($id)
     ]);
+});
+
+//SAME SINGLE PROFILE BUT WITH 404 ERROR
+// Route::get('/profile/{id}', function(Profile $id){
+//     return view('auth/profile',[
+//         'logged_in' => 'true',
+//         'heading' => 'Profile',
+//         'profile' => $id
+//     ]);
+// });
+Route::get('/reviews', function () {
+    return view('reviews/terminal_reviews');
 });

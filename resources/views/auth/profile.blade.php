@@ -44,10 +44,10 @@
                             <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="{{$profile['email']}}" disabled></div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value="Philippines" disabled></div>
+                            <div class="col-md-12"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value="Philippines" disabled></div>
                         </div>
-                        <div class="row mt-3">  
-                            <div class="col-md-6"><label class="labels">City/ Province</label><input type="text" class="form-control" value="Angeles City" placeholder="state" disabled></div>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">City/ Province</label><input type="text" class="form-control" value="Angeles City" placeholder="state" disabled></div>
                         </div>
                         <br>
                         <div class="col-md-12"><button id="submit" class="btn text-white btn-block btn-primary">Save Changes</button></div>

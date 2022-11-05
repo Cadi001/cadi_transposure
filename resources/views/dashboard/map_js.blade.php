@@ -3,7 +3,8 @@
     //var trynatin = 'di nagiba';
 
     function redirectMe(link) {
-        location.href = ('https://www.facebook.com/messages/t/' + link.toString);
+        //location.href = ('https://www.facebook.com/messages/t/' + link.toString);
+        console.log(link);
     }
     function console_log(){
         var p1 = "adTrigged";
