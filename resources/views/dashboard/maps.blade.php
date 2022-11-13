@@ -19,7 +19,7 @@
             
     //GET LONGITUDE AND LATITUDE OF TRICYCLE TERMINALS
     $tricycle_data = [];
-    $sql = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transit WHERE transit_id = 1";
+    $sql = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transits WHERE transit_id = 1";
     $result = $conn->query($sql);
     $row = mysqli_fetch_all($result);
 
@@ -35,7 +35,7 @@
 
     //GET LONGITUDE AND LATITUDE OF JEEP TERMINALS
     $jeep_data = [];
-    $sql2 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transit WHERE transit_id = 2";
+    $sql2 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transits WHERE transit_id = 2";
     $result2 = $conn->query($sql2);
     $row2 = mysqli_fetch_all($result2);
 
@@ -51,7 +51,7 @@
 
     //GET LONGITUDE AND LATITUDE OF BUS TERMINALS
     $bus_data = [];
-    $sql3 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transit WHERE transit_id = 3";
+    $sql3 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transits WHERE transit_id = 3";
     $result3 = $conn->query($sql3);
     $row3 = mysqli_fetch_all($result3);
 

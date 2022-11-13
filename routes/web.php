@@ -2,7 +2,9 @@
 use App\Exceptions\URL;
 namespace App\Exceptions;
 use App\Models\Profile;
+use App\Models\Transit_review;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -48,6 +50,19 @@ Route::get('/profile/{id}', function($id){
 //         'profile' => $id
 //     ]);
 // });
-Route::get('/reviews', function () {
-    return view('reviews/terminal_reviews');
+// Route::get('/reviews/{terminal_id}', function ($terminal_id) {
+//     return view('reviews/terminal_reviews',[
+//         'terminalData' => Transit_review::find($terminal_id)
+//     ]);
+// });
+
+Route::get('/reviews/{terminal_id}', function ($terminal_id) {
+    $results = DB::select('SELECT * FROM transit_reviews WHERE terminal_id   = :terminal_id', ['terminal_id' => $terminal_id]);
+    $terminal_name = DB::select('select * from transits where id = :id', ['id' => $terminal_id]);
+
+    return view('reviews/terminal_reviews',[
+        'terminalData' => $results,
+        'terminalName' => $terminal_name
+        
+    ]);
 });
