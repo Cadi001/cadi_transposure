@@ -28,7 +28,6 @@
                         </div>
 
                         <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
-                            <a href="#" class="btn btn-outline-primary btn-sm float-right">Top Rated</a>
                             <h5 class="mb-1">All Ratings and Reviews</h5>
 
                             @foreach($terminalData as $value)
@@ -37,15 +36,8 @@
                                       <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-pill"></a>
                                       <div class="media-body">
                                           <div class="reviews-members-header">
-                                              <span class="star-rating float-right">
-                                                    <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                    <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                    <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                    <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                    <a href="#"><i class="icofont-ui-rating"></i></a>
-                                                    </span>
                                               <h6 class="mb-1"><a class="text-black" href="#">{{$value->commented_by}}</a></h6>
-                                              <p class="text-gray">{{$value->date_posted}}</p>
+                                              <p class="text-gray">Posted on {{$value->date_posted}}</p>
                                           </div>
                                           <div class="reviews-members-body">
                                               <p>{{$value->body}}</p>
@@ -59,7 +51,7 @@
                               <hr>
                             @endforeach
                             
-                            <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
+                            {{-- <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a> --}}
                         </div>
                         <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
                             <h5 class="mb-4">Leave Comment</h5>
@@ -68,23 +60,23 @@
                                   {{$tn->slug}} Terminal?
                               @endforeach
                             </p>
-                            <div class="mb-4">
-                                <span class="star-rating">
-                                         <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                         <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                         <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                         <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                         <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                         </span>
-                            </div>
-                            <form>
+                            <?php 
+                                if(isset($_POST['submit_comment'])){
+                                    $_SESSION['comment'] = $_POST['comment'];
+                                    echo'<script>window.location="../submit_comment"</script>';
+                                }
+                            ?>
+                            <form method="POST">
                                 <div class="form-group">
-                                    <textarea class="form-control"></textarea>
+                                    <textarea style="height: 15%" class="form-control" name="comment"></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-sm" type="button"> Submit Comment </button>
+                                <div style="direction: rtl;" class="form-group">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="GET">
+                                    <input style="display: block; padding: 12px" class="btn btn-dark btn-sm" value="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Submit &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " type="submit" name="submit_comment">
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

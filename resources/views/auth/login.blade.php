@@ -1,7 +1,9 @@
 <?php
   //echo'<script>window.location="register.php"</script>';
 
-	session_start();
+  if(session_id() == '') {
+    session_start();
+}
 	 
   $servername = "localhost";
   $username = "root";
@@ -105,13 +107,13 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password"  required>
                   </div>
-                  <div class="text-right"><span><a href="../changepassword/change_pass.php" class="forgot-pass">Forgot password</a></div>
+                  <div class="text-right"><span><a href="changepass" class="forgot-pass">Forgot password</a></div>
                   <br>
                   {{ csrf_field() }}
                   <input type="hidden" name="_method" value="GET">
                   <input type="submit" value="Login" class="btn text-white btn-block btn-primary" name="login">
 
-                  <span class="d-block text-center my-4 text-muted"><a href="../register/register.php" class="forgot-pass">No account yet?</a></span> 
+                  <span class="d-block text-center my-4 text-muted"><a href="register" class="forgot-pass">No account yet?</a></span> 
                   
                 </form>
               </div>
