@@ -3,6 +3,7 @@ use App\Exceptions\URL;
 namespace App\Exceptions;
 use App\Models\Profile;
 use App\Models\Transit_review;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,16 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth/login');
 });
+Route::get('/logout', function () {
+    return view('auth/logout');
+});
 
+// Route::get('/checkAuth/{$id}', function ($id) {
+//     return view('auth/login',[
+//         'logged_in' => 'true',
+//         'profile' => User::find($id)
+//     ]);
+// });
 Route::get('/dashboard', function () {
     return view('dashboard/dashboard');
 });

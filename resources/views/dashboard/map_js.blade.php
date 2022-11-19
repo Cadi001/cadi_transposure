@@ -3,7 +3,7 @@
     //var trynatin = 'di nagiba';
 
     function redirectMe(id) {
-        location.href = ('http://192.168.31.99:8000/reviews/' + id);
+        location.href = ('http://127.0.0.1:8000/reviews/' + id);
     }
     function console_log(){
         var p1 = "adTrigged";
@@ -62,7 +62,7 @@
 
         var options = {
             zoom    :13,
-            center  :{lat:17.1589496, lng: 120.6308387},
+            center  :{lat:15.142713864469993, lng: 120.62007881852675},
             disableDefaultUI: true,
             zoomControl: true,
             streetViewControl: true,
@@ -377,7 +377,7 @@
 
                     map.setCenter(pos1);
                 
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/tricycle.png", coords:{lat: transitLat, lng: transitLang}});
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/tricycle_pin.png", coords:{lat: transitLat, lng: transitLang}});
          
             }
         });
@@ -422,7 +422,7 @@
                         };
 
                     map.setCenter(pos1);
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/jeep.png", coords:{lat: transitLat, lng: transitLang}});
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/jeep_pin.png", coords:{lat: transitLat, lng: transitLang}});
          
             }
         });
@@ -464,7 +464,7 @@
                             lng: transitLang,
                         };
                     map.setCenter(pos1);
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/bus.png" ,coords:{lat: transitLat, lng: transitLang}});
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/bus_pin.png" ,coords:{lat: transitLat, lng: transitLang}});
             }
         });
         

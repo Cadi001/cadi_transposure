@@ -89,17 +89,6 @@
             <h6>TRANSPOSURE</h6>
             <br><br>
             <div>
-                
-                <?php
-                    if(true){
-                        echo '<a class="sideNavButton" href="profile"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
-                    }
-                    else{
-                        echo '<a class="sideNavButton" href="profile"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Login &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
-                    }
-                    
-                ?>
-                <br><br><br><br>
                 <a onclick="showGetDirectionForm()" class="sideNavButton" id="searchDirection" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Search Directions &nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 <br><br><br><br>
                 <a class="sideNavButton" href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
@@ -109,8 +98,20 @@
                 <a onclick="myFunction()" class="sideNavButton" id="bus" href="#"><i class="fa-solid fa-bus-simple"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Bus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 <br><br><br><br>
                 <a onclick="myFunction()" class="sideNavButton" id="tricycle" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tricycle &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                <br><br><br><br>
+                <?php
+                    if(!empty($_SESSION['login_user'])){
+                        $id = $_SESSION['id'];?>
+                        <a class="sideNavButton" href="<?php echo('profile/'.$id);?>"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                        <br><br><br><br>
+                        <a class="sideNavButton" href="<?php echo('logout');?>"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Logout &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                    <?php
+                    }
+                    else{
+                        echo '<a class="sideNavButton" href="login"><i class="fa-solid fa-user"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Login &nbsp&nbsp&nbsp&nbsp&nbsp</a>';
+                    }
                 
-           
+                ?>
             </div>
         </div>
         <div id="output">

@@ -2,10 +2,21 @@
   //echo'<script>window.location="register.php"</script>';
 
 	session_start();
-	//require "../database/db.php";
+	 
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "map";
+
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
 
   if(isset($_SESSION['login_user']) && !empty($_SESSION['login_user'])){
-    echo'<script>window.location="...dashboard/dashboard.php"</script>';
+    echo'<script>window.location="../"</script>';
     exit();
   }
   else{
@@ -53,7 +64,7 @@
                       if(isset($_POST["login"])) {
                         $myusername = $_POST["username"];
                         $mypassword = $_POST["password"];
-                        $sql = "SELECT uname, is_active FROM trans_user_info WHERE uname = '$myusername' AND pword = '$mypassword'";
+                        $sql = "SELECT id, uname, is_active FROM profiles WHERE uname = '$myusername' AND pword = '$mypassword'";
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);		 
                         
@@ -62,9 +73,10 @@
                             if($count == 1) {		
                               //CHECK IF ACCOUNT IS ACTIVE
                               $is_active =  isset($row['is_active']) ? $row['is_active'] : 0;
+                              $id = $_SESSION['id'] = $row['id'];
                               if($is_active == 1){	
                                   $_SESSION['login_user'] = $myusername;			 
-                                  echo'<script>window.location="../dashboard/dashboard.php"</script>';
+                                  echo'<script>window.location="../"</script>';
                                   echo'hatdog';
                               }else{
                                 echo '<p1 class="mb-4 h-100 d-flex align-items-center 
@@ -95,7 +107,8 @@
                   </div>
                   <div class="text-right"><span><a href="../changepassword/change_pass.php" class="forgot-pass">Forgot password</a></div>
                   <br>
-
+                  {{ csrf_field() }}
+                  <input type="hidden" name="_method" value="GET">
                   <input type="submit" value="Login" class="btn text-white btn-block btn-primary" name="login">
 
                   <span class="d-block text-center my-4 text-muted"><a href="../register/register.php" class="forgot-pass">No account yet?</a></span> 
