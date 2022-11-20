@@ -94,8 +94,8 @@ if(session_id() == '') {
             <br><br>
             <div>
                 <a onclick="showGetDirectionForm()" class="sideNavButton" id="searchDirection" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Search Directions &nbsp&nbsp&nbsp&nbsp&nbsp</a>
-                <br><br><br><br>
-                <a class="sideNavButton" href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
+                {{-- <br><br><br><br>
+                <a class="sideNavButton" href="#"><i class="fa-solid fa-bell"></i> Notifications</a> --}}
                 <br><br><br><br>
                 <a onclick="myFunction()" class="sideNavButton" id="jeep" href="#"><i class="fa-solid fa-motorcycle"></i>&nbsp&nbsp&nbsp&nbsp&nbsp Jeep &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 <br><br><br><br>

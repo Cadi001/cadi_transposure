@@ -36,6 +36,36 @@
                                       <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-pill"></a>
                                       <div class="media-body">
                                           <div class="reviews-members-header">
+                                                <p style="color:rgb(250, 151, 69);">
+                                                    <?php 
+                                                        if($value->star_ratings == '5'){
+                                                            echo(
+                                                                '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star"></span></a>
+                                                                 <a onclick="" id="star-five" ><span id="span-five" class="rate fa fa-star re"></span></a>');
+                                                        }elseif ($value->star_ratings == '4') {
+                                                            echo(
+                                                                '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star"></span></a>');
+                                                        }elseif ($value->star_ratings == '3') {
+                                                            echo(
+                                                                '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>');
+                                                        }elseif ($value->star_ratings == '2') {
+                                                            echo(
+                                                                '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>');
+                                                        }elseif ($value->star_ratings == '1') {
+                                                            echo('<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>');
+                                                        }
+                                                        
+                                                    ?>
+                                                </p>
                                               <h6 class="mb-1"><a class="text-black" href="#">{{$value->commented_by}}</a></h6>
                                               <p class="text-gray">Posted on {{$value->date_posted}}</p>
                                           </div>
@@ -54,7 +84,15 @@
                             {{-- <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a> --}}
                         </div>
                         <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-                            <h5 class="mb-4">Leave Comment</h5>
+                            <h5 class="mb-4">Rate now</h5>
+                            <div style="font-size: 30px">
+                                <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
+                                <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
+                                <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
+                                <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star"></span></a>
+                                <a onclick="" id="star-five" ><span id="span-five" class="rate fa fa-star re"></span></a>
+                            </div>
+                            
                             <p class="mb-2">what can you say about 
                               @foreach($terminalName as $tn)
                                   {{$tn->slug}} Terminal?
@@ -73,7 +111,7 @@
                                 <div style="direction: rtl;" class="form-group">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="GET">
-                                    <input style="display: block; padding: 12px" class="btn btn-dark btn-sm" value="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Submit &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " type="submit" name="submit_comment">
+                                    <input style="display: block; padding: 12px" class="btn btn-dark btn-sm" value="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Rate &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " type="submit" name="submit_comment">
                                 </div>
                             </form>
 
@@ -90,3 +128,4 @@
 
     </div>
 </div>
+<script src="https://kit.fontawesome.com/52721c09fd.js" crossorigin="anonymous"></script>

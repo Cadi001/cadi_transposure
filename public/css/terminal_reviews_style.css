@@ -39,6 +39,14 @@ body{
     .rating-list-center {
         width: 80%;
     }
+
+    .rate:hover{
+        /* transition: .5s; */
+        color: rgb(238, 142, 63);
+        /* font-size: 20px; */
+    }
+    
+    
     .rating-list-right {
         line-height: 29px;
         text-align: right;

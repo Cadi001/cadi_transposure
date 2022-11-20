@@ -89,7 +89,8 @@ Route::get('/profile/{id}', function($id){
 Route::get('/submit_comment', function () {
     $comment = $_SESSION['comment'];
     $terminal_id = $_SESSION['terminal_id'];
-    DB::insert('insert into transit_reviews (commented_by, title, terminal_id, body) values (?, ?, ?, ?)', ['dummy name','dummy title',$terminal_id, $comment]);
+    $commented_by = $_SESSION['fullname'];
+    DB::insert('insert into transit_reviews (commented_by, title, terminal_id, body, star_ratings) values (?, ?, ?, ?, ?)', [$commented_by,'dummy title',$terminal_id, $comment, '5']);
     echo'<script>window.location="reviews/'.$_SESSION['terminal_id'].'"</script>';
 });
 

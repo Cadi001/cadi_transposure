@@ -66,7 +66,7 @@
                       if(isset($_POST["login"])) {
                         $myusername = $_POST["username"];
                         $mypassword = $_POST["password"];
-                        $sql = "SELECT id, uname, is_active FROM profiles WHERE uname = '$myusername' AND pword = '$mypassword'";
+                        $sql = "SELECT id, fullname, uname, is_active FROM profiles WHERE uname = '$myusername' AND pword = '$mypassword'";
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);		 
                         
@@ -76,6 +76,7 @@
                               //CHECK IF ACCOUNT IS ACTIVE
                               $is_active =  isset($row['is_active']) ? $row['is_active'] : 0;
                               $id = $_SESSION['id'] = $row['id'];
+                              $id = $_SESSION['fullname'] = $row['fullname'];
                               if($is_active == 1){	
                                   $_SESSION['login_user'] = $myusername;			 
                                   echo'<script>window.location="../"</script>';
