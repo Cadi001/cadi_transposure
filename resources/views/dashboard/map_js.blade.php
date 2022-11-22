@@ -1,4 +1,6 @@
 
+<input type="text" class="form-control" id="client_name" name="client_name" value= "<?php echo($_SESSION['fullname']);?>" hidden>
+  
 <script>
     //var trynatin = 'di nagiba';
 
@@ -39,6 +41,29 @@
         x.style.display = "none";
         }
     }
+
+      function findNearestMarker(coords) {
+        var minDist = 1000,
+        nearest_text = '*None*',
+        markerDist,
+        // get all objects added to the map
+        objects = map.getObjects(),
+        len = map.getObjects().length,
+        i;
+
+      // iterate over objects and calculate distance between them
+      for (i = 0; i < len; i += 1) {
+        markerDist = objects[i].getGeometry().distance(coords);
+        if (markerDist < minDist) {
+          minDist = markerDist;
+          nearest_text = objects[i].getData();
+        }
+      }
+
+      logEvent('The nearest marker is: ' + nearest_text);
+    }
+
+
     function detectOreientation(){
         //GET THE HEIGHT OF BROWSER TO FIT THE MAP
         var body = document.body, html = document.documentElement;
@@ -377,7 +402,7 @@
 
                     map.setCenter(pos1);
                 
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/tricycle_pin.png", coords:{lat: transitLat, lng: transitLang}});
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/tricycle_pin.png", coords:{lat: transitLat, lng: transitLang}}, transitLat, transitLang);
          
             }
         });
@@ -479,7 +504,7 @@
                 };
 
                 map.setCenter(pos);
-                addMarker({content:'<h4>Hello!</h4>This is where you at!', coords:{lat:position.coords.latitude, lng: position.coords.longitude}, iconImage:"images/jaina.png"});
+                addMarker({content:'<h4>Hello '+document.getElementById("client_name").value+'!</h4>This is where you at!', coords:{lat:position.coords.latitude, lng: position.coords.longitude}, iconImage:"images/jaina.png"});
                 
                 },
                 () => {
@@ -601,7 +626,7 @@
         const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
     
 
-        function addMarker(props){
+        function addMarker(props, lati, longi){
             
             // The marker, positioned at SAPALIBUTAD
             var marker = new google.maps.Marker({
@@ -629,11 +654,12 @@
                 marker.addListener('click', function(){
                     infoWindow.open(map, marker);
                     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
+                    drawDirection(lati +', '+ longi , '15.162027065287445, 120.62008734266928');
                 });
-                marker.addListener('dblclick', function(){
-                    marker.setMap(null);
-                    //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
-                });
+                // marker.addListener('dblclick', function(){
+                //     marker.setMap(null);
+                //     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
+                // });
             }
         }
     }
