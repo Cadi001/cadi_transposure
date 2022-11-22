@@ -1,5 +1,5 @@
 
-<input type="text" class="form-control" id="client_name" name="client_name" value= "<?php echo($_SESSION['fullname']);?>" hidden>
+<input type="text" class="form-control" id="client_name" name="client_name" value= "<?php echo(empty($_SESSION['fullname'])?"":$_SESSION['fullname']);?>" hidden>
   
 <script>
     //var trynatin = 'di nagiba';
@@ -394,6 +394,10 @@
                     a++;
                     var ratings = lamanArray[a].slice(1, -1);
                     a++;
+                    var destination_lat = lamanArray[a].slice(1, -1);
+                    a++;
+                    var destination_long = lamanArray[a].slice(1, -1);
+                    a++;
                     console.log(ratings);
                     const pos1 = {
                             lat: transitLat,
@@ -402,7 +406,7 @@
 
                     map.setCenter(pos1);
                 
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/tricycle_pin.png", coords:{lat: transitLat, lng: transitLang}}, transitLat, transitLang);
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/tricycle_pin.png", coords:{lat: transitLat, lng: transitLang}}, transitLat, transitLang, destination_lat, destination_long);
          
             }
         });
@@ -440,6 +444,11 @@
                     a++;
                     var ratings = lamanArray[a].slice(1, -1);
                     a++;
+                    var destination_lat = lamanArray[a].slice(1, -1);
+                    a++;
+                    var destination_long = lamanArray[a].slice(1, -1);
+                    a++;
+                    
                     console.log(markerName + markerInfo);
                     const pos1 = {
                             lat: transitLat,
@@ -447,7 +456,7 @@
                         };
 
                     map.setCenter(pos1);
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/jeep_pin.png", coords:{lat: transitLat, lng: transitLang}});
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/jeep_pin.png", coords:{lat: transitLat, lng: transitLang}}, transitLat, transitLang, destination_lat, destination_long);
          
             }
         });
@@ -483,13 +492,17 @@
                     a++;
                     var ratings = lamanArray[a].slice(1, -1);
                     a++;
+                    var destination_lat = lamanArray[a].slice(1, -1);
+                    a++;
+                    var destination_long = lamanArray[a].slice(1, -1);
+                    a++;
                     console.log(markerName + markerInfo);
                     const pos1 = {
                             lat: transitLat,
                             lng: transitLang,
                         };
                     map.setCenter(pos1);
-                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/bus_pin.png" ,coords:{lat: transitLat, lng: transitLang}});
+                    addMarker({content:markerName + markerInfo + ratings, iconImage:"images/bus_pin.png" ,coords:{lat: transitLat, lng: transitLang}}, transitLat, transitLang, destination_lat, destination_long);
             }
         });
         
@@ -626,7 +639,7 @@
         const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
     
 
-        function addMarker(props, lati, longi){
+        function addMarker(props, lati, longi, dest_lat, dest_long){
             
             // The marker, positioned at SAPALIBUTAD
             var marker = new google.maps.Marker({
@@ -654,7 +667,7 @@
                 marker.addListener('click', function(){
                     infoWindow.open(map, marker);
                     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
-                    drawDirection(lati +', '+ longi , '15.162027065287445, 120.62008734266928');
+                    drawDirection(lati + ', ' + longi , dest_lat + ',' + dest_long);
                 });
                 // marker.addListener('dblclick', function(){
                 //     marker.setMap(null);

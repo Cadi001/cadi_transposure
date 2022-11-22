@@ -23,7 +23,7 @@ if(session_id() == '') {
             
     //GET LONGITUDE AND LATITUDE OF TRICYCLE TERMINALS
     $tricycle_data = [];
-    $sql = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transits WHERE transit_id = 1";
+    $sql = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, destination_lat, destination_lang, date_modified FROM transits WHERE transit_id = 1";
     $result = $conn->query($sql);
     $row = mysqli_fetch_all($result);
 
@@ -35,11 +35,13 @@ if(session_id() == '') {
         array_push($tricycle_data, $r[4]);
         array_push($tricycle_data, $r[5]); 
         array_push($tricycle_data, $r[6]);  
+        array_push($tricycle_data, $r[7]);
+        array_push($tricycle_data, $r[8]);   
     }
 
     //GET LONGITUDE AND LATITUDE OF JEEP TERMINALS
     $jeep_data = [];
-    $sql2 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transits WHERE transit_id = 2";
+    $sql2 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, destination_lat, destination_lang, date_modified FROM transits WHERE transit_id = 2";
     $result2 = $conn->query($sql2);
     $row2 = mysqli_fetch_all($result2);
 
@@ -51,11 +53,13 @@ if(session_id() == '') {
         array_push($jeep_data, $r2[4]); 
         array_push($jeep_data, $r2[5]); 
         array_push($jeep_data, $r2[6]); 
+        array_push($jeep_data, $r2[7]); 
+        array_push($jeep_data, $r2[8]); 
     }
 
     //GET LONGITUDE AND LATITUDE OF BUS TERMINALS
     $bus_data = [];
-    $sql3 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, date_modified FROM transits WHERE transit_id = 3";
+    $sql3 = "SELECT id, marker_name, marker_description, latitude, longitude, terminal_rating, destination_lat, destination_lang, date_modified FROM transits WHERE transit_id = 3";
     $result3 = $conn->query($sql3);
     $row3 = mysqli_fetch_all($result3);
 
@@ -67,6 +71,8 @@ if(session_id() == '') {
         array_push($bus_data, $r3[4]);
         array_push($bus_data, $r3[5]);
         array_push($bus_data, $r3[6]);
+        array_push($bus_data, $r3[7]);
+        array_push($bus_data, $r3[8]);
     }
 
 ?>
