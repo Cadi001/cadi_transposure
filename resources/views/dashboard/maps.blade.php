@@ -75,7 +75,11 @@ if(session_id() == '') {
         array_push($bus_data, $r3[8]);
     }
 
-?>
+?>  <div>
+        {{-- <input  type="hidden" id ="guide_from" class="form-control">
+        <input onchange="loglog()" type="text" id ="guide_to" class="form-control" > --}}
+    </div>
+
         <div id="getDirection">
             <div class= "d-flex align-items-center">
                 <div class="float-right">
@@ -84,6 +88,7 @@ if(session_id() == '') {
                 <input type="text" id ="from" placeholder="Origin" class="form-control">
                 <input type="text" id ="to" placeholder="Destination" class="form-control">
                 <button id="directionBtn" class="btn text-white btn-block btn-primary"><i class="fa-solid fa-compass"></i></button>
+
                 <button id="getLocation" class="btn text-white btn-block btn-primary"><i class="fa-solid fa-location-crosshairs"></i></button>
             </div>
         </div>           
@@ -91,6 +96,14 @@ if(session_id() == '') {
         <div id="googleMap">
         
         </div>
+        <div style="margin-right: 100px;">
+            <button id="toggleGuide" style="width: 40px; margin: 10px; display: none;" class="btn text-white btn-block btn-primary" onclick="toggleGuide()"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div id="route_iframe" style="display: none;">
+            <iframe id="guide_iframe" style="border-style: none; " src="http://127.0.0.1:8000/direction_info/1" title="description" height="450px"></iframe>
+        </div>
+    
+x
         <div id="sidenav">
             <button id="toggleNavbar" class="btn text-white btn-block btn-primary" onclick="myFunction()"><i class="fa-solid fa-bars"></i></button>
             
@@ -130,10 +143,15 @@ if(session_id() == '') {
         
     </body>
     @include ("dashboard/map_js")
+
     <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkgdeYfgqc0CrCToppJtf5FP4LXSQcgRY&libraries=places&callback=initMap">
     </script>
     <script src="https://kit.fontawesome.com/52721c09fd.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
 </html>

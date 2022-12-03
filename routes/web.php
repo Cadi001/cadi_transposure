@@ -3,6 +3,7 @@ use App\Exceptions\URL;
 namespace App\Exceptions;
 use App\Models\Profile;
 use App\Models\Transit_review;
+use App\Models\Predefined_route;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -77,11 +78,30 @@ Route::get('/dashboard', function () {
     return view('dashboard/dashboard');
 });
 
+// Route::get('/direction_info', function () {
+//     return view('direction_info',[
+//         'logged_in' => 'true',
+//         'heading' => 'Profile'
+//     ]);
+// });
+//ROUTE DISPLAY
+Route::get('/direction_info/{id}', function($id){
+    $predef_route = DB::select('select id from predefined_routes where direction_from = :direction_from', ['direction_from' => $id]);
+    // ddd(json_encode($predef_route[0]->id));
+    return view('direction_info',[
+        'logged_in' => 'true',
+        'heading' => 'ROUTES',
+        'p_route' => Predefined_route::find($predef_route[0]->id)
+    ]);
+});
+
 //SINGLE PROFILE
 Route::get('/profile/{id}', function($id){
+
     return view('auth/profile',[
         'logged_in' => 'true',
         'heading' => 'Profile',
+        
         'profile' => Profile::find($id)
     ]);
 });

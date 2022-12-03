@@ -31,14 +31,28 @@
     function myFunction() {
         var x = document.getElementById("sidenav");
         var y = document.getElementById("toggleNavbar");
+        var z = document.getElementById("route_iframe");
 
         if (x.style.display == "none") {
         x.style.display = "block";
         x.style.textAlign ="center";
+        z.style.display = "none";
 
 
         } else {
         x.style.display = "none";
+        }
+    }
+
+    function toggleGuide(){
+      var z = document.getElementById("route_iframe");
+      var x = document.getElementById("sidenav");
+      if (z.style.display == "none") {
+          z.style.display = "block";
+          x.style.display = "none";
+          
+        } else {
+          z.style.display = "none";
         }
     }
 
@@ -344,6 +358,17 @@
         // const transitLayer = new google.maps.TransitLayer();
         // transitLayer.setMap(map);
         
+
+        //GET CURRENT LOCATION USING A BUTTON
+        const locationButton = document.getElementById('getLocation');
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
+
+        //ADD COMMUTER'S GUIDE
+        const comm_guide = document.getElementById('route_iframe');
+        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(comm_guide);
+        //ADD COMMUTER'S GUIDE BTN
+        const comm_guide_btn = document.getElementById('toggleGuide');
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(comm_guide_btn);
         //ADD SIDE NAVBAR
         const sideBar = document.getElementById('sidenav');
         map.controls[google.maps.ControlPosition.LEFT_TOP].push(sideBar);
@@ -354,10 +379,6 @@
 
         const myModal= document.getElementById('myModal');
         map.controls[google.maps.ControlPosition.TOP].push(myModal);
-
-        //GET CURRENT LOCATION USING A BUTTON
-        const locationButton = document.getElementById('getLocation');
-        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationButton);
 
         const outputt = document.getElementById('output');
         map.controls[google.maps.ControlPosition.BOTTOM].push(outputt);
@@ -597,7 +618,7 @@
                     directionDisplay.setDirections(result);
                     directionDisplay.setOptions({
                         polylineOptions: {
-                        strokeColor: 'red',
+                        strokeColor: 'pink',
                         strokeWeight: 8
                         
                     }
@@ -620,9 +641,22 @@
     }
         //SHOW PATH FROM POINT A TO POINT B
         document.getElementById('directionBtn').onclick = function(){
-            var origin = (document.getElementById('from').value == '') ? (myLatLong) : (document.getElementById('from').value);
-            var destination = document.getElementById('to').value;
+            var origin = "";
+            var destination = "";
+            origin = (document.getElementById('from').value == '') ? (myLatLong) : (document.getElementById('from').value);
+            destination = document.getElementById('to').value;
             drawDirection(origin, destination);
+            console.log('origin: '+ origin);
+            console.log('destination: '+ destination);
+            // document.getElementById('guide_from').value = origin;
+            // document.getElementById('guide_to').value = destination;
+            var newloc = "http://127.0.0.1:8000/direction_info/"+ origin.replace(/[^\w]/g, "");
+            document.getElementById('guide_iframe').setAttribute('src', newloc);
+            document.getElementById('guide_iframe').src = document.getElementById('guide_iframe').src
+            document.getElementById('route_iframe').style.display = "block";
+            document.getElementById('toggleGuide').style.display = "block";
+            
+            
             
         }
         //CREATE AUTOCOMPLETE OBJECTS FOR ALL INPUT
