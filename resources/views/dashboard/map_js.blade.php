@@ -650,7 +650,7 @@
             console.log('destination: '+ destination);
             // document.getElementById('guide_from').value = origin;
             // document.getElementById('guide_to').value = destination;
-            var newloc = "http://127.0.0.1:8000/direction_info/"+ origin.replace(/[^\w]/g, "");
+            var newloc = "http://127.0.0.1:8000/direction_info/"+ origin.replace(/[^\w]/g, "") + "/" + destination.replace(/[^\w]/g, "");
             document.getElementById('guide_iframe').setAttribute('src', newloc);
             document.getElementById('guide_iframe').src = document.getElementById('guide_iframe').src
             document.getElementById('route_iframe').style.display = "block";

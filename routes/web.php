@@ -85,8 +85,8 @@ Route::get('/dashboard', function () {
 //     ]);
 // });
 //ROUTE DISPLAY
-Route::get('/direction_info/{id}', function($id){
-    $predef_route = DB::select('select id from predefined_routes where direction_from = :direction_from', ['direction_from' => $id]);
+Route::get('/direction_info/{id}/{id2}', function($id, $id2){
+    $predef_route = DB::select('select id from predefined_routes where direction_from = :direction_from AND direction_to = :direction_to', ['direction_from' => $id, 'direction_to' => $id2]);
     // ddd(json_encode($predef_route[0]->id));
     return view('direction_info',[
         'logged_in' => 'true',
