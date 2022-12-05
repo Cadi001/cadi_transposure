@@ -387,6 +387,9 @@
             |  SHOW MARKERS OF TRICYCLE  |
             ------------------------------
         */
+        // logoLabel.addEventListener("click",() =>{
+        //   addMarker({content:'<h4>Hello '+document.getElementById("client_name").value+'!</h4>This is where you at!', coords:{lat:15.162905128591627, lng: 120.61270042246787}, iconImage:"images/jaina.png"});
+        // });                                                                                              
         const tricycle = document.getElementById('tricycle');
         tricycle.addEventListener("click", () => {
             
@@ -595,11 +598,21 @@
         
         //THIS FUNCTION WILL DRAW PATH FROM ORIGIN TO DESTINATION
         function drawDirection(userOrigin, userDestination){
+         
             //CREATE A REQUEST
             var request = {
                 //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
                 origin: userOrigin,
                 destination: userDestination,
+
+                waypoints: [
+                {
+                  location: 'McDonald’s, Poinsettia Avenue, Angeles, Pampanga',
+                  stopover: false
+                },{
+                  location: 'Sto. Rosario Elementary School, Miranda Street, Angeles, Pampanga',
+                  stopover: false
+                }],
                 travelMode: google.maps.TravelMode.DRIVING, //WALKING, BICYCLE, TRANSIT
                 unitSystem: google.maps.UnitSystem.IMPERIAL
             };
@@ -655,13 +668,18 @@
             document.getElementById('guide_iframe').src = document.getElementById('guide_iframe').src
             document.getElementById('route_iframe').style.display = "block";
             document.getElementById('toggleGuide').style.display = "block";
+            if(origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines"){
+              addGuideMarker({content:'You should take tricycle(CUAYAN TODA) from your location to here', coords:{lat:15.144248, lng: 120.558289}, iconImage:"images/tricycle_pin.png"});
+              addGuideMarker({content:'You should take a jeep from here (SAPANG BATO JEEP)', coords:{lat:15.144406127997659, lng: 120.55975165590064}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'Then take a walk around to reach this terminal(PANDAN PAMPANG TERMINAL)', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'And your destination is should be here', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
+            }
             
             
             
         }
         //CREATE AUTOCOMPLETE OBJECTS FOR ALL INPUT
         var options = {
-            types: ['address'],
             componentRestrictions: {country: "ph"}
         }
         var input1 = document.getElementById("from");
@@ -672,6 +690,38 @@
         //var autocomplete2 = new google.maps.places.Autocomplete(input2, options)
         const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
     
+
+
+        function addGuideMarker(props, lati, longi){
+            
+            // The marker, positioned at SAPALIBUTAD
+            var marker = new google.maps.Marker({
+                position    : props.coords,
+                map         : map,
+                animation   : google.maps.Animation.DROP,
+                //icon        : ''
+            });
+            
+            //CHECK FOR CUSTOM ICON
+            if(props.iconImage){
+                //SET ICON IMAGE
+                marker.setIcon(props.iconImage);
+            }
+
+            //CHECK CONTENT
+            if(props.content){
+                //SET CONTENT
+                //MAKE A INFO THAT WILL SHOW IN MARKER
+                var infoWindow = new google.maps.InfoWindow({
+                    content:props.content
+                });
+                //THIS IS WHERE INFO SHOW WHEN A PIN CLICKED
+                marker.addListener('click', function(){
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+
 
         function addMarker(props, lati, longi, dest_lat, dest_long){
             
