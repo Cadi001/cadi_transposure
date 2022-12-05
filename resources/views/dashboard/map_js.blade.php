@@ -716,7 +716,7 @@
                     content:props.content
                 });
                 //THIS IS WHERE INFO SHOW WHEN A PIN CLICKED
-                marker.addListener('click', function(){
+                marker.addListener('mouseover', function(){
                     infoWindow.open(map, marker);
                 });
             }
