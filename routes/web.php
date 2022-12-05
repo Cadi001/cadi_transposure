@@ -86,7 +86,7 @@ Route::get('/dashboard', function () {
 // });
 //ROUTE DISPLAY
 Route::get('/direction_info/{id}/{id2}', function($id, $id2){
-    $predef_route = DB::select('select id from predefined_routes where direction_from = :direction_from AND direction_to = :direction_to', ['direction_from' => $id, 'direction_to' => $id2]);
+    $predef_route = DB::select('SELECT id FROM predefined_routes WHERE direction_from = :direction_from AND direction_to = :direction_to', ['direction_from' => $id, 'direction_to' => $id2]);
     // ddd(json_encode($predef_route[0]->id));
     return view('direction_info',[
         'logged_in' => 'true',
@@ -110,7 +110,8 @@ Route::get('/submit_comment', function () {
     $comment = $_SESSION['comment'];
     $terminal_id = $_SESSION['terminal_id'];
     $commented_by = $_SESSION['fullname'];
-    DB::insert('insert into transit_reviews (commented_by, title, terminal_id, body, star_ratings) values (?, ?, ?, ?, ?)', [$commented_by,'dummy title',$terminal_id, $comment, '5']);
+    $star = $_SESSION['star_val'];
+    DB::insert('insert into transit_reviews (commented_by, title, terminal_id, body, star_ratings) values (?, ?, ?, ?, ?)', [$commented_by,'dummy title',$terminal_id, $comment, $star]);
     echo'<script>window.location="reviews/'.$_SESSION['terminal_id'].'"</script>';
 });
 

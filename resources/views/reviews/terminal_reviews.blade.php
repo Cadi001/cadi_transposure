@@ -1,19 +1,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="{{ asset('css/terminal_reviews_style.css') }}">
 <title>Reviews</title>
 <!------ Include the above in your HEAD tag ---------->
 <?php //die(json_encode($terminalData))?>
-<div class="container">
-   
-<div class="container">
+<div id="div_container" class="container">
     <div class="row">
   
-    
-      
-      
-        <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
         <div class="container">
                     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
                         <div id="ratings-and-reviews" class="bg-white rounded shadow-sm p-4 mb-4 clearfix ">
@@ -43,25 +35,36 @@
                                                                 '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
                                                                  <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
                                                                  <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
-                                                                 <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star"></span></a>
-                                                                 <a onclick="" id="star-five" ><span id="span-five" class="rate fa fa-star re"></span></a>');
+                                                                 <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-five" ><span id="span-five" class="rate fa fa-star checked"></span></a>');
                                                         }elseif ($value->star_ratings == '4') {
                                                             echo(
                                                                 '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
                                                                  <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
                                                                  <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
-                                                                 <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star"></span></a>');
+                                                                 <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>');
                                                         }elseif ($value->star_ratings == '3') {
                                                             echo(
                                                                 '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
                                                                  <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
-                                                                 <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>');
+                                                                 <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>
+                                                                 <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>');
                                                         }elseif ($value->star_ratings == '2') {
                                                             echo(
                                                                 '<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
-                                                                 <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>');
+                                                                 <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
+                                                                 <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>
+                                                                 <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>
+                                                                 <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>');
                                                         }elseif ($value->star_ratings == '1') {
-                                                            echo('<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>');
+                                                            echo('<a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
+                                                                    <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>
+                                                                    <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>
+                                                                    <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked"></span></a>
+                                                                    <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star unchecked    "></span></a>
+                                                            ');
                                                         }
                                                         
                                                     ?>
@@ -86,13 +89,58 @@
                         <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
                             <h5 class="mb-4">Rate now</h5>
                             <div style="font-size: 30px">
-                                <a onclick="" id="star-one"><span id="span-one" class="rate fa fa-star checked"></span></a>
-                                <a onclick="" id="star-two"><span id="span-two" class="rate fa fa-star checked"></span></a>
-                                <a onclick="" id="star-three"><span id="span-three" class="rate fa fa-star checked"></span></a>
-                                <a onclick="" id="star-four"><span id="span-four" class="rate fa fa-star"></span></a>
-                                <a onclick="" id="star-five" ><span id="span-five" class="rate fa fa-star re"></span></a>
+                                <button onclick="rateone()" id="star_btn1" class="star_btn"><span  class="rate fa fa-star"></span></button>
+                                <button onclick="ratetwo()" id="star_btn2" class="star_btn"><span  class="rate fa fa-star"></span></button>
+                                <button onclick="ratethree()" id="star_btn3" class="star_btn"><span class="rate fa fa-star"></span></button>
+                                <button onclick="ratefour()" id="star_btn4" class="star_btn"><span  class="rate fa fa-star"></span></button>
+                                <button onclick="ratefive()" id="star_btn5" class="star_btn"><span class="rate fa fa-star re"></span></button>
                             </div>
-                            
+
+                            <script>
+                                function rateone(){
+                                    document.getElementById("star_val").value = 1;
+                                    document.getElementById("star_btn1").style.color = "orange";
+                                    document.getElementById("star_btn2").style.color = "gray";
+                                    document.getElementById("star_btn3").style.color = "gray";
+                                    document.getElementById("star_btn4").style.color = "gray";
+                                    document.getElementById("star_btn5").style.color = "gray";
+                                }
+                                function ratetwo(){
+                                    document.getElementById("star_val").value = 2;
+                                    document.getElementById("star_btn1").style.color = "orange";
+                                    document.getElementById("star_btn2").style.color = "orange";
+                                    document.getElementById("star_btn3").style.color = "gray";
+                                    document.getElementById("star_btn4").style.color = "gray";
+                                    document.getElementById("star_btn5").style.color = "gray";
+                                }
+                                function ratethree(){
+                                    document.getElementById("star_val").value = 3;
+                                    document.getElementById("star_btn1").style.color = "orange";
+                                    document.getElementById("star_btn2").style.color = "orange";
+                                    document.getElementById("star_btn3").style.color = "orange";
+                                    document.getElementById("star_btn4").style.color = "gray";
+                                    document.getElementById("star_btn5").style.color = "gray";
+                                }
+                                function ratefour(){
+                                    document.getElementById("star_val").value = 4;
+                                    document.getElementById("star_btn1").style.color = "orange";
+                                    document.getElementById("star_btn2").style.color = "orange";
+                                    document.getElementById("star_btn3").style.color = "orange";
+                                    document.getElementById("star_btn4").style.color = "orange";
+                                    document.getElementById("star_btn5").style.color = "gray";
+                                    
+                                }
+                                function ratefive(){
+                                    document.getElementById("star_val").value = 5;
+                                    document.getElementById("star_btn1").style.color = "orange";
+                                    document.getElementById("star_btn2").style.color = "orange";
+                                    document.getElementById("star_btn3").style.color = "orange";
+                                    document.getElementById("star_btn4").style.color = "orange";
+                                    document.getElementById("star_btn5").style.color = "orange";
+                                }
+
+                            </script>
+                    
                             <p class="mb-2">what can you say about 
                               @foreach($terminalName as $tn)
                                   {{$tn->slug}} Terminal?
@@ -101,10 +149,12 @@
                             <?php 
                                 if(isset($_POST['submit_comment'])){
                                     $_SESSION['comment'] = $_POST['comment'];
+                                    $_SESSION['star_val'] = $_POST['star_val'];
                                     echo'<script>window.location="../submit_comment"</script>';
                                 }
                             ?>
                             <form method="POST">
+                                <input type="hidden" id="star_val" name="star_val" value="0">
                                 <div class="form-group">
                                     <textarea style="height: 15%" class="form-control" name="comment"></textarea>
                                 </div>
@@ -129,3 +179,5 @@
     </div>
 </div>
 <script src="https://kit.fontawesome.com/52721c09fd.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
