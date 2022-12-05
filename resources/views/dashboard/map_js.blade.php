@@ -669,10 +669,10 @@
             document.getElementById('route_iframe').style.display = "block";
             document.getElementById('toggleGuide').style.display = "block";
             if(origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines"){
-              addGuideMarker({content:'You should take tricycle(CUAYAN TODA) from your location to here', coords:{lat:15.144248, lng: 120.558289}, iconImage:"images/tricycle_pin.png"});
-              addGuideMarker({content:'You should take a jeep from here (SAPANG BATO JEEP)', coords:{lat:15.144406127997659, lng: 120.55975165590064}, iconImage:"images/jeep_pin.png"});
-              addGuideMarker({content:'Then take a walk around to reach this terminal(PANDAN PAMPANG TERMINAL)', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
-              addGuideMarker({content:'And your destination is should be here', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">You should take tricycle(<strong>CUAYAN TODA</strong>) from your location to here<p>', coords:{lat:15.144248, lng: 120.558289}, iconImage:"images/tricycle_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep from here (<strong>SAPANG BATO JEEP</strong>)<p>', coords:{lat:15.144406127997659, lng: 120.55975165590064}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">And your destination is should be here<p>', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
             }
             
             
