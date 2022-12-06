@@ -18,6 +18,34 @@
     </head>
     <body>
         @if ($logged_in  == 'true')
+
+            <?php 
+                if(isset($_POST["profile_submit"])) {
+                        $_SESSION['profile_fname'] = $_POST["profile_fname"];
+                        $_SESSION['profile_phonenum'] = $_POST["profile_phonenum"];
+                        $_SESSION['profile_address'] = $_POST["profile_address"];
+                        $_SESSION['profile_email'] = $_POST["profile_email"];
+                        //$_SESSION['profile_country'] = $_POST["profile_country"];
+                        $_SESSION['profile_city'] = $_POST["profile_city"];
+                        echo '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+                                <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+                                <div class="container">
+                                    <div class="row text-center">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                        <br><br> <h2 style="color:#0fad00">Hooray! profile successfully updated!</h2>
+                                        <p style="font-size:20px;color:#5C5C5C;"> Reridecting you to profile page</p>
+                                        </div>
+                                    </div>
+                                </div>';
+
+                        echo '<script>window.location="../update_profile"</script>';
+                }
+                        
+
+
+            ?>
                 
             <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
@@ -30,27 +58,32 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Account Details</h4>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-12"><label class="labels">Fullname</label><input type="text" class="form-control" placeholder="Fullname" value="{{ $profile['fullname']}}" disabled></div>
-                            
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value="{{ $profile['contact_no']}}" disabled></div>
-                        </div>
-                        <div class="row mt-3"> 
-                            <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address line 1" value="{{ $profile['street'] .', '.$profile['barangay'].', '.$profile['city']. '.'}}" disabled></div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="{{$profile['email']}}" disabled></div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value="Philippines" disabled></div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">City/ Province</label><input type="text" class="form-control" value="Angeles City" placeholder="state" disabled></div>
-                        </div>
-                        <br>
-                        <div class="col-md-12"><button id="submit" class="btn text-white btn-block btn-primary">Save Changes</button></div>
+                        <form method="POST">
+                            <div class="row mt-2">
+                                <div class="col-md-12"><label class="labels">Fullname</label><input name="profile_fname" type="text" class="form-control" placeholder="Fullname" value="{{ $profile['fullname']}}"></div>
+                                
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Mobile Number</label><input name="profile_phonenum" type="text" class="form-control" placeholder="enter phone number" value="{{ $profile['contact_no']}}"></div>
+                            </div>
+                            <div class="row mt-3"> 
+                                <div class="col-md-12"><label class="labels">Address</label><input name="profile_address" type="text" class="form-control" placeholder="enter address line 1" value="{{ $profile['address'] }}"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Email ID</label><input name="profile_email" type="text" class="form-control" placeholder="enter email id" value="{{$profile['email']}}"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">City/ Province</label><input name="profile_city" type="text" class="form-control" value="{{$profile['city']}}" placeholder="state"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Country</label><input name="profile_country" type="text" class="form-control" placeholder="country" value="Philippines" disabled></div>
+                            </div>
+
+                            <br>
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="GET">
+                            <div class="col-md-12"><input value="Save profile" type="submit" name="profile_submit" class="btn text-white btn-block btn-primary"></div>
+                        </form>
                     </div>
                 </div>
                 </div>

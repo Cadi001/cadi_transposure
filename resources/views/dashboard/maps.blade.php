@@ -112,6 +112,7 @@ x
             <h6>TRANSPOSURE</h6>
             <br><br>
             <div>
+                <input type="text" name="marker_overload" id="marker_overload" value="">
                 <a onclick="showGetDirectionForm()" class="sideNavButton" id="searchDirection" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Search Directions &nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 {{-- <br><br><br><br>
                 <a class="sideNavButton" href="#"><i class="fa-solid fa-bell"></i> Notifications</a> --}}
@@ -143,9 +144,8 @@ x
         
     </body>
     @include ("dashboard/map_js")
-
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkgdeYfgqc0CrCToppJtf5FP4LXSQcgRY&libraries=places&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOJ-i522rQb8nEcNzOPF7ADajj6_bT-Kc&libraries=places&callback=initMap">
     </script>
     <script src="https://kit.fontawesome.com/52721c09fd.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>

@@ -97,12 +97,13 @@ Route::get('/direction_info/{id}/{id2}', function($id, $id2){
 
 //SINGLE PROFILE
 Route::get('/profile/{id}', function($id){
-
+    $_SESSION['profile_id'] = $id;
     return view('auth/profile',[
         'logged_in' => 'true',
         'heading' => 'Profile',
         
         'profile' => Profile::find($id)
+        
     ]);
 });
 
@@ -139,4 +140,20 @@ Route::get('/reviews/{terminal_id}', function ($terminal_id) {
         'terminalName' => $terminal_name
         
     ]);
+});
+
+Route::get('/update_profile', function () {
+    $id = $_SESSION['profile_id'];
+    $fname = $_SESSION['profile_fname'];
+    $phonenum = $_SESSION['profile_phonenum'];
+    $address = $_SESSION['profile_address'];
+    $email = $_SESSION['profile_email'];
+    //$country = $_SESSION['profile_country'];
+    $city = $_SESSION['profile_city'];
+
+    $affected = DB::table('profiles')
+              ->where('id', $id)
+              ->update(['fullname' => $fname, 'contact_no' => $phonenum, 'email' => $email, 'city' => $city, 'address' => $address]);
+
+    echo '<script>window.location="../profile/'.$id.'"</script>';
 });

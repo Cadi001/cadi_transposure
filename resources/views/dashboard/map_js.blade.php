@@ -9,7 +9,7 @@
     }
     function console_log(){
         var p1 = "adTrigged";
-        console.log("Triggered");
+        //console.log("Triggered");
     }
     function showGetDirectionForm(){
         var getDirectionFrom = document.getElementById("from");
@@ -29,19 +29,22 @@
         }
     }
     function myFunction() {
+        document.getElementById("marker_overload").value = "true";
         var x = document.getElementById("sidenav");
         var y = document.getElementById("toggleNavbar");
         var z = document.getElementById("route_iframe");
 
         if (x.style.display == "none") {
-        x.style.display = "block";
-        x.style.textAlign ="center";
-        z.style.display = "none";
-
+          x.style.display = "block";
+          x.style.textAlign ="center";
+          z.style.display = "none";
 
         } else {
         x.style.display = "none";
         }
+
+        
+
     }
 
     function toggleGuide(){
@@ -401,8 +404,8 @@
             
             const lamanArray = laman.split(",");
             const skipper = lamanArray.length;
-            console.log("ratings", lamanArray[4]);
-
+            //console.log("ratings", lamanArray[4]);
+            
             for(let a = 0; a < lamanArray.length; a++){
                     //THIS IS WHERE QUOTATION REMOVED TO BE ABLE TO BE CONVERTED IN DOUBLE
                     // console.log("latitude: ", parseFloat(lamanArray[0].slice(1, -1)));
@@ -422,7 +425,7 @@
                     a++;
                     var destination_long = lamanArray[a].slice(1, -1);
                     a++;
-                    console.log(ratings);
+                    //console.log(ratings);
                     const pos1 = {
                             lat: transitLat,
                             lng: transitLang,
@@ -451,7 +454,7 @@
             
             const lamanArray = laman.split(",");
             const skipper = lamanArray.length;
-            console.log(lamanArray);
+            //console.log(lamanArray);
 
             for(let a = 0; a < lamanArray.length; a++){
                     //THIS IS WHERE QUOTATION REMOVED TO BE ABLE TO BE CONVERTED IN DOUBLE
@@ -473,7 +476,7 @@
                     var destination_long = lamanArray[a].slice(1, -1);
                     a++;
                     
-                    console.log(markerName + markerInfo);
+                    //console.log(markerName + markerInfo);
                     const pos1 = {
                             lat: transitLat,
                             lng: transitLang,
@@ -520,7 +523,7 @@
                     a++;
                     var destination_long = lamanArray[a].slice(1, -1);
                     a++;
-                    console.log(markerName + markerInfo);
+                    //console.log(markerName + markerInfo);
                     const pos1 = {
                             lat: transitLat,
                             lng: transitLang,
@@ -599,23 +602,36 @@
         //THIS FUNCTION WILL DRAW PATH FROM ORIGIN TO DESTINATION
         function drawDirection(userOrigin, userDestination){
          
+          console.log(userOrigin, userDestination)
+          //ADD WAYPOINT PER MARKER
+          if(userOrigin == 'Cuayan Barangay Hall, Angeles, Pampanga, Philippines' && userDestination == 'Marquee, Angeles, Pampanga, Philippines'){
+              //CREATE A REQUEST
+              var request = {
+                  //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
+                  origin: userOrigin,
+                  destination: userDestination,
+                  //add if condition here 
+                    waypoints: [
+                    {
+                      location: 'McDonald’s, Poinsettia Avenue, Angeles, Pampanga',
+                      stopover: false
+                    },{
+                      location: 'Sto. Rosario Elementary School, Miranda Street, Angeles, Pampanga',
+                      stopover: false
+                    }],
+                  travelMode: google.maps.TravelMode.DRIVING, //WALKING, BICYCLE, TRANSIT
+                  unitSystem: google.maps.UnitSystem.IMPERIAL
+              };
+          }else{
             //CREATE A REQUEST
             var request = {
                 //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
                 origin: userOrigin,
                 destination: userDestination,
-
-                waypoints: [
-                {
-                  location: 'McDonald’s, Poinsettia Avenue, Angeles, Pampanga',
-                  stopover: false
-                },{
-                  location: 'Sto. Rosario Elementary School, Miranda Street, Angeles, Pampanga',
-                  stopover: false
-                }],
                 travelMode: google.maps.TravelMode.DRIVING, //WALKING, BICYCLE, TRANSIT
                 unitSystem: google.maps.UnitSystem.IMPERIAL
             };
+          }
             //PASS THE REQUEST TO THE ROUTE METHOD
             directionService.route(request, (result, status) =>{
                 if (status == google.maps.DirectionsStatus.OK){
@@ -631,7 +647,7 @@
                     directionDisplay.setDirections(result);
                     directionDisplay.setOptions({
                         polylineOptions: {
-                        strokeColor: 'pink',
+                        strokeColor: 'RED',
                         strokeWeight: 8
                         
                     }
@@ -659,8 +675,8 @@
             origin = (document.getElementById('from').value == '') ? (myLatLong) : (document.getElementById('from').value);
             destination = document.getElementById('to').value;
             drawDirection(origin, destination);
-            console.log('origin: '+ origin);
-            console.log('destination: '+ destination);
+            //console.log('origin: '+ origin);
+            //console.log('destination: '+ destination);
             // document.getElementById('guide_from').value = origin;
             // document.getElementById('guide_to').value = destination;
             var newloc = "http://127.0.0.1:8000/direction_info/"+ origin.replace(/[^\w]/g, "") + "/" + destination.replace(/[^\w]/g, "");
@@ -674,9 +690,7 @@
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">And your destination is should be here<p>', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
             }
-            
-            
-            
+
         }
         //CREATE AUTOCOMPLETE OBJECTS FOR ALL INPUT
         var options = {
@@ -723,6 +737,13 @@
         }
 
 
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+          for (var i = 0; i < marker.length; i++) {
+            marker[i].setMap(null);
+          marker = [];
+        }}
+
         function addMarker(props, lati, longi, dest_lat, dest_long){
             
             // The marker, positioned at SAPALIBUTAD
@@ -732,7 +753,18 @@
                 animation   : google.maps.Animation.DROP,
                 //icon        : ''
             });
+
+            console.log(marker);
             
+            // if(document.getElementById("marker_overload").value == "true"){
+              
+            //   console.log("Connter");
+            //   document.getElementById("marker_overload").value = "false";
+            //   marker.setMap(null);
+            // } else{
+            //   console.log("bot working");
+            // }
+
             //CHECK FOR CUSTOM ICON
             if(props.iconImage){
                 //SET ICON IMAGE
@@ -753,11 +785,14 @@
                     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
                     drawDirection(lati + ', ' + longi , dest_lat + ',' + dest_long);
                 });
-                // marker.addListener('dblclick', function(){
-                //     marker.setMap(null);
-                //     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
-                // });
+                marker.addListener('hover', function(){
+                    marker.setMap(null);
+                    //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
+                });
+                
             }
+
+
         }
     }
 var getDirectionFrom = document.getElementById("from").style.display = "none";
