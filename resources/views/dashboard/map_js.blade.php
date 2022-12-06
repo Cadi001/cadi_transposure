@@ -604,7 +604,7 @@
          
           console.log(userOrigin, userDestination)
           //ADD WAYPOINT PER MARKER
-          if(userOrigin == 'Cuayan Barangay Hall, Angeles, Pampanga, Philippines' && userDestination == 'Marquee, Angeles, Pampanga, Philippines'){
+          if((userOrigin.replace(/[^\w]/g, "") == "CuayanElementarySchoolAngelesPampangaPhilippines" || userOrigin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines") && (userDestination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines" || userDestination.replace(/[^\w]/g, "") == "MarQueeMallCinemaAngelesPampangaPhilippines" || userDestination.replace(/[^\w]/g, "") == "AyalaMarQueeMallAngelesPampangaPhilippines" || userDestination.replace(/[^\w]/g, "") == "MarQueeParkAngelesPampangaPhilippines" )){
               //CREATE A REQUEST
               var request = {
                   //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
@@ -622,7 +622,40 @@
                   travelMode: google.maps.TravelMode.DRIVING, //WALKING, BICYCLE, TRANSIT
                   unitSystem: google.maps.UnitSystem.IMPERIAL
               };
-          }else{
+          // }else if(){
+
+          // }else if(){
+
+          }else if(userOrigin.replace(/[^\w]/g, "") == "PulungCacutudAngelesPampangaPhilippines" && userDestination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines"){
+              //CREATE A REQUEST
+              var request = {
+                  //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
+                  origin: userOrigin,
+                  destination: userDestination,
+                  //add if condition here 
+                    waypoints: [
+                    {
+                      location: "15.162608209308303, 120.60839278950694",
+                      stopover: false
+                    }, 
+                    {
+                      location: "Fiesta Carnival, Angeles, Pampanga, Philippines",
+                      stopover: false
+                    },                   
+                    {
+                      location: "A. V. BERCES - DE GUZMAN ACCOUNTING FIRM, Pampanga, Angeles, Pampanga, Philippines",
+                      stopover: false
+                    }],
+                  travelMode: google.maps.TravelMode.DRIVING, //WALKING, BICYCLE, TRANSIT
+                  unitSystem: google.maps.UnitSystem.IMPERIAL
+              };
+          // }else if(){
+
+          // }else if(){
+
+          }
+          
+          else{
             //CREATE A REQUEST
             var request = {
                 //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
@@ -684,7 +717,21 @@
             document.getElementById('guide_iframe').src = document.getElementById('guide_iframe').src
             document.getElementById('route_iframe').style.display = "block";
             document.getElementById('toggleGuide').style.display = "block";
-            if(origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines"){
+            if((origin.replace(/[^\w]/g, "") == "CuayanElementarySchoolAngelesPampangaPhilippines" || origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines") && (destination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines" || destination.replace(/[^\w]/g, "") == "MarQueeMallCinemaAngelesPampangaPhilippines" || destination.replace(/[^\w]/g, "") == "AyalaMarQueeMallAngelesPampangaPhilippines" || destination.replace(/[^\w]/g, "") == "MarQueeParkAngelesPampangaPhilippines" )){
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Here, you can take(<strong>CUAYAN TODA</strong>) tricycle.<p>', coords:{lat:15.146768261862913, lng:120.54858222982425}, iconImage:"images/tricycle_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;"><strong>CUAYAN TODA</strong> tricycle will drop you here here<p>', coords:{lat:15.144437529208984, lng:120.55937164280859}, iconImage:"images/tricycle_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep from here (<strong>SAPANG BATO JEEP</strong>)<p>', coords:{lat:15.144406127997659, lng: 120.55975165590064}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;"><strong>SAPANG BATO JEEP</strong> will drop you here<p>', coords:{lat:15.14183262497067, lng: 120.58790886759557}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">And your destination is should be here<p>', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
+            } 
+            else if(origin.replace(/[^\w]/g, "") == "PulungCacutudAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines"){
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">You should take(<strong>ANGELES-MAGALANG</strong> Jeep) from here to Marquee terminal<p>', coords:{lat:15.166913917540409, lng: 120.61851458247749}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep at marquee terminal (<strong>PANDAN PAMPANG</strong> jeep)<p>', coords:{lat:15.162464155133899, lng: 120.60833237227527}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">You will be dropped here<p>', coords:{lat:15.14299954986142, lng: 120.59671179637006}, iconImage:"images/jeep_pin.png"});
+              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Your destination is here<p>', coords:{lat:15.145835339582497, lng: 120.59490006328159}, iconImage:"images/destination.png"});
+            }
+            else if(origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines"){
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">You should take tricycle(<strong>CUAYAN TODA</strong>) from your location to here<p>', coords:{lat:15.144248, lng: 120.558289}, iconImage:"images/tricycle_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep from here (<strong>SAPANG BATO JEEP</strong>)<p>', coords:{lat:15.144406127997659, lng: 120.55975165590064}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
