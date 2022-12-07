@@ -1,6 +1,6 @@
 <?php
-use App\Exceptions\URL;
 namespace App\Exceptions;
+use App\Exceptions\URL;
 use App\Models\Profile;
 use App\Models\Transit_review;
 use App\Models\Predefined_route;
@@ -84,6 +84,7 @@ Route::get('/dashboard', function () {
 //         'heading' => 'Profile'
 //     ]);
 // });
+
 //ROUTE DISPLAY
 Route::get('/direction_info/{id}/{id2}', function($id, $id2){
     $predef_route = DB::select('SELECT id FROM predefined_routes WHERE direction_from = :direction_from AND direction_to = :direction_to', ['direction_from' => $id, 'direction_to' => $id2]);

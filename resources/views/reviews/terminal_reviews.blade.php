@@ -86,6 +86,13 @@
                             
                             {{-- <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a> --}}
                         </div>
+            <?php if(isset($_SESSION['fullname'])){
+                if($_SESSION['fullname'] == ""){
+
+                }else{
+            
+            
+            ?>
                         <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
                             <h5 class="mb-4">Rate now</h5>
                             <div style="font-size: 30px">
@@ -140,7 +147,7 @@
                                 }
 
                             </script>
-                    
+
                             <p class="mb-2">what can you say about 
                               @foreach($terminalName as $tn)
                                   {{$tn->slug}} Terminal?
@@ -164,6 +171,7 @@
                                     <input style="display: block; padding: 12px" class="btn btn-dark btn-sm" value="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Rate &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " type="submit" name="submit_comment">
                                 </div>
                             </form>
+                    <?php }} ?>
 
                         </div>
                     </div>

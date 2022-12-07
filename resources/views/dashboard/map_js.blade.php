@@ -725,7 +725,8 @@
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">And your destination is should be here<p>', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
             } 
-            else if((origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines") && (destination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines" || destination.replace(/[^\w]/g, "") == "AngelesUniversityFoundationMedicalCenterMacArthurHighwayAngelesPampangaPhilippines" )){
+            else if((origin.replace(/[^\w]/g, "") == "PulungCacutudAngelesPampangaPhilippines") && (destination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines" || destination.replace(/[^\w]/g, "") == "AngelesUniversityFoundationMedicalCenterMacArthurHighwayAngelesPampangaPhilippines" ))
+            {
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">You should take(<strong>ANGELES-MAGALANG</strong> Jeep) from here to Marquee terminal<p>', coords:{lat:15.166913917540409, lng: 120.61851458247749}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep at marquee terminal (<strong>PANDAN PAMPANG</strong> jeep)<p>', coords:{lat:15.162464155133899, lng: 120.60833237227527}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">You will be dropped here<p>', coords:{lat:15.14299954986142, lng: 120.59671179637006}, iconImage:"images/jeep_pin.png"});
@@ -825,7 +826,7 @@
                     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
                     drawDirection(lati + ', ' + longi , dest_lat + ',' + dest_long);
                 });
-                marker.addListener('hover', function(){
+                marker.addListener('dblclick', function(){
                     marker.setMap(null);
                     //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
                 });

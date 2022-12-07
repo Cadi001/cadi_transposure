@@ -67,6 +67,7 @@ if(session_id() == '') {
                         $street = $_SESSION['st'];
                         $barangay = $_SESSION['brgy'];
                         $city = $_SESSION['ct'];
+                        $address = $street . $barangay;
 
                         $otp_code = $_SESSION['otp_code'];
                         //echo $otp_code;
@@ -76,8 +77,8 @@ if(session_id() == '') {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 // set the PDO error mode to exception
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $sql = "INSERT INTO profiles (fullname, uname, pword, email, contact_no, street, barangay, city, user_type, is_active, date_created)
-                                VALUES ('$fname', '$uname', '$pword', '$e_mail','$contact_no','$street','$barangay','$city','client','1','".date('Y-m-d')."')";
+                                $sql = "INSERT INTO profiles (fullname, uname, pword, email, contact_no, address, city, user_type, is_active, date_created)
+                                VALUES ('$fname', '$uname', '$pword', '$e_mail','$contact_no','$address','$city','client','1','".date('Y-m-d')."')";
                                 
                                 // use exec() because no results are returned
                                 $conn->exec($sql);

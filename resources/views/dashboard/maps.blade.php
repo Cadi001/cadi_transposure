@@ -77,7 +77,7 @@ if(session_id() == '') {
 
 ?>  <div>
         {{-- <input  type="hidden" id ="guide_from" class="form-control">
-        <input onchange="loglog()" type="text" id ="guide_to" class="form-control" > --}}
+        <input onchange="loglog()" type="text" id ="guide_to" class="form-control"> --}}
     </div>
 
         <div id="getDirection">
@@ -112,7 +112,7 @@ x
             <h6>TRANSPOSURE</h6>
             <br><br>
             <div>
-                <input type="text" name="marker_overload" id="marker_overload" value="">
+                <input type="text" name="marker_overload" id="marker_overload" value="" hidden>
                 <a onclick="showGetDirectionForm()" class="sideNavButton" id="searchDirection" href="#"><i class="fa-solid fa-motorcycle" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Search Directions &nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 {{-- <br><br><br><br>
                 <a class="sideNavButton" href="#"><i class="fa-solid fa-bell"></i> Notifications</a> --}}
