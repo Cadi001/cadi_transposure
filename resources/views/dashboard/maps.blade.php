@@ -79,7 +79,7 @@ if(session_id() == '') {
         {{-- <input  type="hidden" id ="guide_from" class="form-control">
         <input onchange="loglog()" type="text" id ="guide_to" class="form-control"> --}}
     </div>
-    <input id="delete-markers" type="button" value="Delete Markers" />
+    <input id="delete-markers" type="button" value="Delete Markers" hidden>
         <div id="getDirection">
             <div class= "d-flex align-items-center">
                 <div class="float-right">

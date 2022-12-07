@@ -397,7 +397,7 @@
         // });                                                                                              
         const tricycle = document.getElementById('tricycle');
         tricycle.addEventListener("click", () => {
-            
+            document.getElementById("delete-markers").dispatchEvent(new Event('click'));
             //addMarker({content:'<h4>Hello!</h4>This is your <strong>Aldwin\'s</strong> current location!', coords:{lat:position.coords.latitude,  lng: position.coords.longitude}});
             
             //DITO MAPUPUNTA YUNG LAMAN NUNG VARIABLE GALING SA PHP 
@@ -447,7 +447,7 @@
         */
         const jeep = document.getElementById('jeep');
         jeep.addEventListener("click", () => {
-          
+            document.getElementById("delete-markers").dispatchEvent(new Event('click'));
             //addMarker({content:'<h4>Hello!</h4>This is your <strong>Aldwin\'s</strong> current location!', coords:{lat:position.coords.latitude,  lng: position.coords.longitude}});
             
             //DITO MAPUPUNTA YUNG LAMAN NUNG VARIABLE GALING SA PHP 
@@ -497,6 +497,7 @@
         */
         const bus = document.getElementById('bus');
         bus.addEventListener("click", () => {
+            document.getElementById("delete-markers").dispatchEvent(new Event('click'));
             
             //DITO MAPUPUNTA YUNG LAMAN NUNG VARIABLE GALING SA PHP 
             var laman = '<?php echo json_encode($bus_data); ?>';
@@ -705,6 +706,8 @@
     }
         //SHOW PATH FROM POINT A TO POINT B
         document.getElementById('directionBtn').onclick = function(){
+            document.getElementById("delete-markers").dispatchEvent(new Event('click'));
+            
             var origin = "";
             var destination = "";
             origin = (document.getElementById('from').value == '') ? (myLatLong) : (document.getElementById('from').value);
@@ -777,6 +780,7 @@
                     infoWindow.open(map, marker);
                 });
             }
+            markers.push(marker);
         }
 
 
@@ -808,6 +812,7 @@
         }
 
         document.getElementById("delete-markers").addEventListener("click", hideMarkers);
+        
 
         function addMarker(props, lati, longi, dest_lat, dest_long){
             
