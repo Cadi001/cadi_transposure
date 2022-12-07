@@ -626,7 +626,7 @@
 
           // }else if(){
 
-          }else if(userOrigin.replace(/[^\w]/g, "") == "PulungCacutudAngelesPampangaPhilippines" && userDestination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines"){
+          }else if(userOrigin.replace(/[^\w]/g, "") == "PulungCacutudAngelesPampangaPhilippines" && (userDestination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines" || userDestination.replace(/[^\w]/g, "") == "AngelesUniversityFoundationMedicalCenterMacArthurHighwayAngelesPampangaPhilippines")){
               //CREATE A REQUEST
               var request = {
                   //IF USER TYPE IN FROM TEXTBOX IT WILL GET THE INFO ELSE IT WILL GET THE USER CURRRENT LOCATION
@@ -725,19 +725,12 @@
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">And your destination is should be here<p>', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
             } 
-            else if(origin.replace(/[^\w]/g, "") == "PulungCacutudAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines"){
+            else if((origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines") && (destination.replace(/[^\w]/g, "") == "AUFMacArthurHighwayAngelesPampangaPhilippines" || destination.replace(/[^\w]/g, "") == "AngelesUniversityFoundationMedicalCenterMacArthurHighwayAngelesPampangaPhilippines" )){
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">You should take(<strong>ANGELES-MAGALANG</strong> Jeep) from here to Marquee terminal<p>', coords:{lat:15.166913917540409, lng: 120.61851458247749}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep at marquee terminal (<strong>PANDAN PAMPANG</strong> jeep)<p>', coords:{lat:15.162464155133899, lng: 120.60833237227527}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">You will be dropped here<p>', coords:{lat:15.14299954986142, lng: 120.59671179637006}, iconImage:"images/jeep_pin.png"});
               addGuideMarker({content:'<p style="color: black; font-size: 20px;">Your destination is here<p>', coords:{lat:15.145835339582497, lng: 120.59490006328159}, iconImage:"images/destination.png"});
             }
-            else if(origin.replace(/[^\w]/g, "") == "CuayanBarangayHallAngelesPampangaPhilippines" && destination.replace(/[^\w]/g, "") == "MarqueeAngelesPampangaPhilippines"){
-              addGuideMarker({content:'<p style="color: black; font-size: 20px;">You should take tricycle(<strong>CUAYAN TODA</strong>) from your location to here<p>', coords:{lat:15.144248, lng: 120.558289}, iconImage:"images/tricycle_pin.png"});
-              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a jeep from here (<strong>SAPANG BATO JEEP</strong>)<p>', coords:{lat:15.144406127997659, lng: 120.55975165590064}, iconImage:"images/jeep_pin.png"});
-              addGuideMarker({content:'<p style="color: black; font-size: 20px;">Then take a walk around to reach this terminal(<strong>PANDAN PAMPANG TERMINAL</strong>)<p>', coords:{lat:15.137927110718033, lng: 120.5890405777153}, iconImage:"images/jeep_pin.png"});
-              addGuideMarker({content:'<p style="color: black; font-size: 20px;">And your destination is should be here<p>', coords:{lat:15.1624040057631, lng: 120.60904347438644}, iconImage:"images/destination.png"});
-            }
-
         }
         //CREATE AUTOCOMPLETE OBJECTS FOR ALL INPUT
         var options = {
