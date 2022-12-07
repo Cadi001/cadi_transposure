@@ -99,13 +99,17 @@ Route::get('/direction_info/{id}/{id2}', function($id, $id2){
 //SINGLE PROFILE
 Route::get('/profile/{id}', function($id){
     $_SESSION['profile_id'] = $id;
-    return view('auth/profile',[
-        'logged_in' => 'true',
-        'heading' => 'Profile',
-        
-        'profile' => Profile::find($id)
-        
-    ]);
+    if($_SESSION['id'] == $id){
+        return view('auth/profile',[
+            'logged_in' => 'true',
+            'heading' => 'Profile',
+            
+            'profile' => Profile::find($id)
+        ]);
+    }else{
+        return view('auth/login');
+    }
+
 });
 
 Route::get('/submit_comment', function () {

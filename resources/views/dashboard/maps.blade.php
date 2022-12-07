@@ -103,7 +103,7 @@ if(session_id() == '') {
             <iframe id="guide_iframe" style="border-style: none; " src="http://127.0.0.1:8000/direction_info/1" title="description" height="450px"></iframe>
         </div>
     
-x
+
         <div id="sidenav">
             <button id="toggleNavbar" class="btn text-white btn-block btn-primary" onclick="myFunction()"><i class="fa-solid fa-bars"></i></button>
             
