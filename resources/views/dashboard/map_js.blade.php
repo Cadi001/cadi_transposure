@@ -2,6 +2,8 @@
 <input type="text" class="form-control" id="client_name" name="client_name" value= "<?php echo(empty($_SESSION['fullname'])?"":$_SESSION['fullname']);?>" hidden>
   
 <script>
+  let map;
+  let markers = [];
     //var trynatin = 'di nagiba';
 
     function redirectMe(id) {
@@ -778,12 +780,34 @@
         }
 
 
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+          console.log(markers.length)
+          for (let i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function hideMarkers() {
+          setMapOnAll(null);
+        }
+
+        // Shows any markers currently in the array.
+        function showMarkers() {
+          setMapOnAll(map);
+        }
+
         // Deletes all markers in the array by removing references to them.
         function deleteMarkers() {
-          for (var i = 0; i < marker.length; i++) {
-            marker[i].setMap(null);
+          hideMarkers();
           marker = [];
-        }}
+        }
+        function removeCoordinate() {
+          marker.setMap(null);
+        }
+
+        document.getElementById("delete-markers").addEventListener("click", hideMarkers);
 
         function addMarker(props, lati, longi, dest_lat, dest_long){
             
@@ -794,7 +818,7 @@
                 animation   : google.maps.Animation.DROP,
                 //icon        : ''
             });
-
+            
             console.log(marker);
             
             // if(document.getElementById("marker_overload").value == "true"){
@@ -832,6 +856,7 @@
                 });
                 
             }
+            markers.push(marker);
 
 
         }

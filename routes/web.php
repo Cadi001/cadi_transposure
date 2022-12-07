@@ -48,7 +48,10 @@ Route::get('/changepass_success', function () {
 
 
 Route::get('/register', function () {
-    return view('register/register');
+    return view('register/register',[
+        'proshit' => Profile::all('uname')
+
+    ]);
 });
 Route::get('/register_2', function () {
     return view('register/register_2');
@@ -105,6 +108,7 @@ Route::get('/profile/{id}', function($id){
             'heading' => 'Profile',
             
             'profile' => Profile::find($id)
+
         ]);
     }else{
         return view('auth/login');

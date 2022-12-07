@@ -10,7 +10,10 @@
   $city = " ";
 
 ?>
-
+{{-- Check if uname is in database --}}
+@foreach($proshit as $pro)
+  {{$pro->uname}}
+@endforeach
 
 <!doctype html>
 <html lang="en">
