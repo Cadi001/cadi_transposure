@@ -50,11 +50,12 @@ Route::get('/changepass_success', function () {
 Route::get('/register', function () {
     return view('register/register',[
         'proshit' => Profile::all('uname')
-
     ]);
 });
 Route::get('/register_2', function () {
-    return view('register/register_2');
+    return view('register/register_2',[
+        'proemail' => Profile::all('email')
+    ]);
 });
 Route::get('/register_3', function () {
     return view('register/register_3');

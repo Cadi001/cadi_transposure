@@ -10,10 +10,7 @@
   $city = " ";
 
 ?>
-{{-- Check if uname is in database --}}
-@foreach($proshit as $pro)
-  {{$pro->uname}}
-@endforeach
+
 
 <!doctype html>
 <html lang="en">
@@ -49,6 +46,18 @@
           <div class="row justify-content-center">
             <div class="col-md-12">
               <div class="form-block">
+                <?php $uname_data = []; ?>
+                @foreach($proshit as $pro)
+                    
+                    @if(isset($_POST["next"]))
+                      @if($pro->uname == $_POST["username"])
+                          <?php array_push($uname_data, $pro->uname); ?>
+                      @else
+
+                      @endif
+
+                    @endif
+                @endforeach
 
               <?php
 
@@ -71,6 +80,9 @@
 
                   if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
                       echo '<p1 class="text-danger">Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.</p1>';
+                  }elseif (in_array($username, $uname_data)) {
+                      echo '<p1 class="text-danger">Your chosen username has been taken</p1>';
+                  
                   }else{
                       //echo 'Strong password.';
                       if($password == $re_password){
@@ -86,7 +98,7 @@
                       }else{
                         echo '<p1 class="text-danger">Password doesn\'t match</p1>';
                       }
-                  }
+                  } 
                 }
                 ?>
                   <div class="mb-4">
