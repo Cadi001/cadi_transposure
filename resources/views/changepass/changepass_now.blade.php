@@ -102,7 +102,7 @@ if(session_id() == '') {
                                 try {
                                     echo $info;
                                     $contactfrom_db = $_SESSION['contactfrom_DB'];
-                                    $newpass = $_POST['pass'];
+                                    $newpass = md5($_POST['pass']);
                                     $servername = "localhost";
                                     $username = "root";
                                     $password = "";

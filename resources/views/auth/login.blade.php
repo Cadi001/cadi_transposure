@@ -65,7 +65,7 @@
                 <?php
                       if(isset($_POST["login"])) {
                         $myusername = $_POST["username"];
-                        $mypassword = $_POST["password"];
+                        $mypassword = md5($_POST["password"]);
                         $sql = "SELECT id, fullname, uname, is_active FROM profiles WHERE uname = '$myusername' AND pword = '$mypassword'";
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);		 
