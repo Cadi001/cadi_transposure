@@ -100,7 +100,7 @@ if(session_id() == '') {
                   <p class="mb-4">Step 4 of 4</p>
                 </div> 
 
-                  <span><a href="register_3">Not your number?</a></span>
+                  <span><?php echo ($_SESSION['contact_no']); ?>&nbsp<a href="register_3">Not your number?</a></span>
                   <br><br>
                 <?php 
                   echo($_SESSION['otp_code']);
