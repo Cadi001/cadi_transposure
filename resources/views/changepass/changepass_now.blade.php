@@ -17,7 +17,7 @@ if(session_id() == '') {
       die("Connection failed: " . $conn->connect_error);
   }
 
-  echo $_SESSION['login_user'];
+  // echo $_SESSION['login_user'];
   $info = $_SESSION['login_user'];
   
 	//require "database/db.php";
@@ -63,7 +63,8 @@ if(session_id() == '') {
               <?php
                   if(isset($_POST["change_now"])) {
                     if($_POST["pass"] == $_POST["pass_2"]){
-
+                      $password = $_POST["pass"];
+                      $re_password = $_POST["pass_2"];
 
 ///////////////////////////////////////
                         // try {
@@ -87,17 +88,16 @@ if(session_id() == '') {
 ///////////////////////////////////////
 
                           // Validate password strength
+                                            // Validate password strength
                           $uppercase = preg_match('@[A-Z]@', $password);
                           $lowercase = preg_match('@[a-z]@', $password);
                           $number    = preg_match('@[0-9]@', $password);
                           $specialChars = preg_match('@[^\w]@', $password);
 
-                          //TEMPORARILY CHANGE TO TRUE DUE TO PREG_MATCH IS DEPRECATED.
-                          if(false) {
+                          if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
                               echo '<p1 class="text-danger">Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.</p1>';
                           }else{
-                            $password = $_POST["pass"];
-                            $re_password = $_POST["pass_2"];
+                            
                             if($password == $re_password){
                                 try {
                                     echo $info;
@@ -143,7 +143,7 @@ if(session_id() == '') {
 
                     }
                     else{
-                        echo "Password doesn't match";
+                        echo '<p1 class="text-danger">Password doesn\'t match</p1>';
                     }
                   }
                 ?>
