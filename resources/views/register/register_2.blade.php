@@ -4,6 +4,18 @@
 }
 	//require "database/db.php";
 ?>
+<?php $uname_data = []; ?>
+@foreach($proemail as $pro)
+    
+    @if(isset($_POST["next_2"]))
+      @if($pro->email == $_POST["email"])
+          <?php array_push($uname_data, $pro->email); ?>
+      @else
+
+      @endif
+
+    @endif
+@endforeach
 
 
 <!doctype html>
@@ -51,6 +63,9 @@
                     $checkmail = preg_match("~@gmail\.com$~",$email);
                     if(!$checkmail){
                       echo '<p1 class="text-danger">Please use Google email only</p1>';
+                    }elseif (in_array($email, $uname_data)) {
+                      echo '<p1 class="text-danger">This email is already taken.</p1>';
+                    
                     }else{                       
                       $otp = rand(10,100);
                       if(isset($_SESSION['email_verify'])&&!empty($_SESSION['email_verify'])){
