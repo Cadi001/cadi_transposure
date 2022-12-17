@@ -87,7 +87,7 @@
                       //echo 'Strong password.';
                       if($password == $re_password){
                                       
-                        $_SESSION['three'] = $_POST["password"];
+                        $_SESSION['three'] = md5($_POST["password"]);
 
                         $_SESSION['next_1'] =  $_POST["fullname"];
                         if(isset($_SESSION['next_1'])&&!empty($_SESSION['next_1'])){

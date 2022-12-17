@@ -2,8 +2,11 @@
 <input type="text" class="form-control" id="client_name" name="client_name" value= "<?php echo(empty($_SESSION['fullname'])?"":$_SESSION['fullname']);?>" hidden>
   
 <script>
+  let setIntLoc;
   let map;
   let markers = [];
+  let locMarkers = [];
+  
     //var trynatin = 'di nagiba';
 
     function redirectMe(id) {
@@ -397,6 +400,8 @@
         // });                                                                                              
         const tricycle = document.getElementById('tricycle');
         tricycle.addEventListener("click", () => {
+            clearInterval(setIntLoc);
+            drawDirection('0', '0');
             document.getElementById("delete-markers").dispatchEvent(new Event('click'));
             //addMarker({content:'<h4>Hello!</h4>This is your <strong>Aldwin\'s</strong> current location!', coords:{lat:position.coords.latitude,  lng: position.coords.longitude}});
             
@@ -447,6 +452,8 @@
         */
         const jeep = document.getElementById('jeep');
         jeep.addEventListener("click", () => {
+            clearInterval(setIntLoc);
+            drawDirection('0', '0');
             document.getElementById("delete-markers").dispatchEvent(new Event('click'));
             //addMarker({content:'<h4>Hello!</h4>This is your <strong>Aldwin\'s</strong> current location!', coords:{lat:position.coords.latitude,  lng: position.coords.longitude}});
             
@@ -497,6 +504,8 @@
         */
         const bus = document.getElementById('bus');
         bus.addEventListener("click", () => {
+            clearInterval(setIntLoc);
+            drawDirection('0', '0');
             document.getElementById("delete-markers").dispatchEvent(new Event('click'));
             
             //DITO MAPUPUNTA YUNG LAMAN NUNG VARIABLE GALING SA PHP 
@@ -537,28 +546,32 @@
         });
         
         locationButton.addEventListener("click", () => {
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                const pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
+          // Try HTML5 geolocation.
+          document.getElementById("delete-loc-markers").dispatchEvent(new Event('click'));
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                  (position) => {
+                  const pos = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude,
+                  };
 
-                map.setCenter(pos);
-                addMarker({content:'<h4>Hello '+document.getElementById("client_name").value+'!</h4>This is where you at!', coords:{lat:position.coords.latitude, lng: position.coords.longitude}, iconImage:"images/jaina.png"});
-                
-                },
-                () => {
-                handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
+                  map.setCenter(pos);
+                  addCurLocMarker({content:'<h4>Hello '+document.getElementById("client_name").value+'!</h4>This is where you at!', coords:{lat:position.coords.latitude, lng: position.coords.longitude}, iconImage:"images/jaina.png"});
+                  //checkpoint
+                  },
+                  () => {
+                  handleLocationError(true, infoWindow, map.getCenter());
+                  }
+              );
+          } else {
+              // Browser doesn't support Geolocation
+              handleLocationError(false, infoWindow, map.getCenter());
+          }
     });
+
+        // REALTIME CURRENT LOCATION
+        // setInterval(locationEverySec, 1000);
 
         //LISTEN FOR CLICK IN MAP
         google.maps.event.addListener(map, 'click',
@@ -706,7 +719,9 @@
     }
         //SHOW PATH FROM POINT A TO POINT B
         document.getElementById('directionBtn').onclick = function(){
+            setIntLoc = setInterval(locationEverySec, 2000);
             document.getElementById("delete-markers").dispatchEvent(new Event('click'));
+            
             
             var origin = "";
             var destination = "";
@@ -807,15 +822,38 @@
           hideMarkers();
           marker = [];
         }
-        function removeCoordinate() {
-          marker.setMap(null);
+
+
+       
+        // Sets the map on all markers in the array.
+        function locSetMapOnAll(map) {
+          console.log(locMarkers.length)
+          for (let i = 0; i < locMarkers.length; i++) {
+            locMarkers[i].setMap(map);
+          }
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function locHideMarkers() {
+          locSetMapOnAll(null);
+        }
+
+        // Shows any markers currently in the array.
+        function locShowMarkers() {
+          locSetMapOnAll(map);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function locDeleteMarkers() {
+          locHideMarkers();
+          locMarkers = [];
         }
 
         document.getElementById("delete-markers").addEventListener("click", hideMarkers);
+        document.getElementById("delete-loc-markers").addEventListener("click", locDeleteMarkers);
         
 
         function addMarker(props, lati, longi, dest_lat, dest_long){
-            
             // The marker, positioned at SAPALIBUTAD
             var marker = new google.maps.Marker({
                 position    : props.coords,
@@ -823,25 +861,49 @@
                 animation   : google.maps.Animation.DROP,
                 //icon        : ''
             });
-            
-            console.log(marker);
-            
-            // if(document.getElementById("marker_overload").value == "true"){
-              
-            //   console.log("Connter");
-            //   document.getElementById("marker_overload").value = "false";
-            //   marker.setMap(null);
-            // } else{
-            //   console.log("bot working");
-            // }
-
             //CHECK FOR CUSTOM ICON
             if(props.iconImage){
                 //SET ICON IMAGE
                 marker.setIcon(props.iconImage);
             }
+            //CHECK CONTENT
+            if(props.content){
+                //SET CONTENT
+                //MAKE A INFO THAT WILL SHOW IN MARKER
+                var infoWindow = new google.maps.InfoWindow({
+                    content:props.content
+                });
+                //THIS IS WHERE INFO SHOW WHEN A PIN CLICKED
+                marker.addListener('click', function(){
+                    infoWindow.open(map, marker);
+                    //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
+                    drawDirection(lati + ', ' + longi , dest_lat + ',' + dest_long);
+                });
+                marker.addListener('dblclick', function(){
+                    marker.setMap(null);
+                    //drawDirection("15.154322398438554, 120.63152421991438", "15.162027065287445, 120.62008734266928");
+                });
+            }
+            markers.push(marker); 
+        }
+        
+        function locationEverySec(){
+          locationButton.dispatchEvent(new Event('click'));
+        }
 
-
+        function addCurLocMarker(props, lati, longi, dest_lat, dest_long){
+            // The marker, positioned at SAPALIBUTAD
+            var marker = new google.maps.Marker({
+                position    : props.coords,
+                map         : map,
+                // animation   : google.maps.Animation.DROP,
+                //icon        : ''
+            });
+            //CHECK FOR CUSTOM ICON
+            if(props.iconImage){
+                //SET ICON IMAGE
+                marker.setIcon(props.iconImage);
+            }
             //CHECK CONTENT
             if(props.content){
                 //SET CONTENT
@@ -861,8 +923,8 @@
                 });
                 
             }
-            markers.push(marker);
-
+            locMarkers.push(marker);
+            
 
         }
     }

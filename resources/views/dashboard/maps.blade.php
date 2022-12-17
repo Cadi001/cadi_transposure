@@ -80,6 +80,7 @@ if(session_id() == '') {
         <input onchange="loglog()" type="text" id ="guide_to" class="form-control"> --}}
     </div>
     <input id="delete-markers" type="button" value="Delete Markers" hidden>
+    <input id="delete-loc-markers" type="button" value="Delete Location Markers" hidden>
         <div id="getDirection">
             <div class= "d-flex align-items-center">
                 <div class="float-right">
